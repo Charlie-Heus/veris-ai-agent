@@ -1,0 +1,29 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+env/
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# VS Code / Cursor settings
+.vscode/
+.history/
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# Node (if using JS or LangChain in TypeScript)
+node_modules/
+dist/

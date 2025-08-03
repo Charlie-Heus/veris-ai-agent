@@ -1,0 +1,11 @@
+# Sample FinanceQA Questions for Testing
+
+1. What is Gross Profit in the year ending 2024?
+2. What is unadjusted EBITDA for the year ending in 2024?
+3. What is unadjusted EBIT for the year ending in 2024?
+4. What is adjusted EBITDA for the year ending in 2024?
+5. What is adjusted EBIT for the year ending in 2024?
+6. Compute the adjusted EBITDA Margin for 2024. 
+7. Company X trades at $15 per share and has 80 shares outstanding, with $80 in net income. Company Y trades at $30 per share, has 15 shares outstanding, and earns $20 in net income. Company X acquires Company Y at no premium, paying 60% in new stock and 40% in cash. After the transaction, what is the percentage change in Company X's EPS?
+8. You deposit $80 right now. After three years, your annual IRR is 10%. How much will your deposit be worth at the end of those three years?
+9. Let's say you're going to receive $75 in 7 years, with a discount rate of 9%. What is its value today?
