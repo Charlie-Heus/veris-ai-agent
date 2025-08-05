@@ -89,6 +89,6 @@ if __name__ == "__main__":
         print(f"Error: {e}")
         exit()
 
-    exit()
+    # exit()
     answer = run_agent(question, context, llm, tools)
     print("\nFinal Answer:", answer)
