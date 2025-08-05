@@ -2,20 +2,17 @@
 """
 Script to download the FinanceQA dataset from Hugging Face.
 
-This script downloads the FinanceQA dataset and provides utilities for
-working with it in the context of our AI agent project.
+This script downloads the FinanceQA dataset and saves it as JSONL format.
 """
 
-import os
 import json
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 from datasets import load_dataset
-import pandas as pd
 
 
-def download_financeqa_dataset(output_dir: str = "data/financeqa_benchmark") -> Dict[str, Any]:
+def download_financeqa_dataset(output_dir: str = "data") -> Dict[str, Any]:
     """
     Download the FinanceQA dataset from Hugging Face.
     
@@ -38,40 +35,19 @@ def download_financeqa_dataset(output_dir: str = "data/financeqa_benchmark") -> 
         print(f"Dataset loaded successfully!")
         print(f"Dataset info: {dataset}")
         
-        # Save the dataset in different formats
+        # Save the dataset as JSONL
         test_data = dataset['test']
+        jsonl_path = output_path / "financeqa_test.jsonl"
         
-        # Save as JSON
-        json_path = output_path / "financeqa_test.json"
-        test_data.to_json(json_path, orient='records', indent=2)
-        print(f"Saved test data to {json_path}")
+        with open(jsonl_path, "w") as f:
+            for row in test_data:
+                f.write(json.dumps(row) + "\n")
         
-        # Save as CSV
-        csv_path = output_path / "financeqa_test.csv"
-        test_data.to_csv(csv_path, index=False)
-        print(f"Saved test data to {csv_path}")
-        
-        # Create a summary
-        summary = {
-            "total_questions": len(test_data),
-            "question_types": test_data['question_type'].count(),
-            "companies": test_data['company'].nunique(),
-            "file_types": test_data['file_name'].nunique(),
-            "output_path": str(output_path)
-        }
-        
-        # Save summary
-        summary_path = output_path / "dataset_summary.json"
-        with open(summary_path, 'w') as f:
-            json.dump(summary, f, indent=2)
-        
-        print(f"Dataset summary saved to {summary_path}")
-        print(f"Summary: {summary}")
+        print(f"Saved test data to {jsonl_path}")
         
         return {
             "dataset": dataset,
             "test_data": test_data,
-            "summary": summary,
             "output_path": str(output_path)
         }
         
@@ -91,10 +67,9 @@ def main():
     if dataset_info:
         print(f"\nDataset downloaded successfully to: {dataset_info['output_path']}")
         print("You can now use this dataset to test your FinanceQA AI Agent!")
-        print("\nTo explore the dataset, run: python scripts/explore_financeqa.py")
     else:
         print("Failed to download dataset. Please check your internet connection and try again.")
 
 
 if __name__ == "__main__":
-    main() 
+    main()
